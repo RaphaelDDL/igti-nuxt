@@ -32,16 +32,17 @@
           Raridade: <span v-for="n in hero.rarity" :key="n">&star;</span>
         </div>
       </div>
-      <img :src="hero.assets.image" class="card-img-top mx-auto" :alt="hero.name" loading="lazy">
+      <img :src="imageUrls.full" class="card-img-top mx-auto" :alt="hero.name" loading="lazy">
     </div>
   </div>
 </template>
 
 <script>
+import { headMetaTags } from '~/utils'
 export default {
   data () {
     return {
-      hero: []
+      hero: {}
     }
   },
   async fetch () {
@@ -49,15 +50,35 @@ export default {
     this.hero = results?.[0] ?? {}
   },
   head () {
-    return {
-      title: this.hero?.name,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.hero?.description
-        }
-      ]
+    const { name, attribute, role, description } = this.hero || {}
+    return headMetaTags(
+      {
+        title: `${name} | Heróis`,
+        description: `${attribute} ${role} ${name}, ${description}`,
+        image: this.imageUrls?.icon ?? ''
+      },
+      this
+    )
+  },
+  // head () {
+  //   return {
+  //     title: this.hero?.name,
+  //     meta: [
+  //       {
+  //         hid: 'description',
+  //         name: 'description',
+  //         content: this.hero?.description
+  //       }
+  //     ]
+  //   }
+  // }
+  computed: {
+    imageUrls () {
+      return {
+        full: this.hero?.assets?.image,
+        small: this.hero?.assets?.thumbnail,
+        icon: this.hero?.assets?.icon
+      }
     }
   }
 }

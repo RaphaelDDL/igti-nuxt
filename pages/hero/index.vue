@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { headMetaTags } from '~/utils'
 export default {
   data () {
     return {
@@ -31,17 +32,28 @@ export default {
     const { results = [] } = await this.$axios.$get('https://api.epicsevendb.com/hero')
     this.heroes = results
   },
+  // head () {
+  //   return {
+  //     title: 'Heróis',
+  //     meta: [
+  //       {
+  //         hid: 'description',
+  //         name: 'description',
+  //         content: 'Lista de Heróis'
+  //       }
+  //     ]
+  //   }
+  // },
   head () {
-    return {
-      title: 'Heróis',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Lista de Heróis'
-        }
-      ]
-    }
+    return headMetaTags(
+      {
+        title: 'Heróis',
+        description:
+                    'Veja informações sobre Heróis',
+        image: 'https://assets.epicsevendb.com/website/journal_hero.png'
+      },
+      this
+    )
   }
 }
 </script>

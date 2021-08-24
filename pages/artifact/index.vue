@@ -9,22 +9,34 @@
 </template>
 
 <script>
+import { headMetaTags } from '~/utils'
 export default {
   async asyncData ({ $axios }) {
     const { results = [] } = await $axios.$get('https://api.epicsevendb.com/artifact')
     return { artifacts: results }
   },
+  // head () {
+  //   return {
+  //     title: 'Artefatos',
+  //     meta: [
+  //       {
+  //         hid: 'description',
+  //         name: 'description',
+  //         content: 'Lista de Artefatos'
+  //       }
+  //     ]
+  //   }
+  // }
   head () {
-    return {
-      title: 'Artefatos',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Lista de Artefatos'
-        }
-      ]
-    }
+    return headMetaTags(
+      {
+        title: 'Artefatos',
+        description:
+                    'Veja informações sobre Artefatos',
+        image: 'https://assets.epicsevendb.com/website/journal_artifact.png'
+      },
+      this
+    )
   }
 }
 </script>
