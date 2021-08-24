@@ -7,7 +7,7 @@ export function headMetaTags (metaTags = {}, instanceThis = {}) {
     meta: [],
     link: [],
     htmlAttrs: {
-      lang: instanceThis.$i18n.locale
+      lang: instanceThis?.$i18n?.locale ?? 'pt'
     }
   }
   const ogOnlyTags = ['title', 'url', 'image']
