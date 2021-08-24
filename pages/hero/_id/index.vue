@@ -50,7 +50,7 @@ export default {
     this.hero = results?.[0] ?? {}
   },
   head () {
-    const { name, attribute, role, description } = this.hero || {}
+    const { name = '', attribute = '', role = '', description = '' } = this.hero || {}
     return headMetaTags(
       {
         title: `${name} | Heróis`,

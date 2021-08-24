@@ -17,8 +17,8 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('increment'),
-    ...mapMutations('algum_modulo', ['mutation1', 'mutation2'])
+    ...mapMutations('increment', { root: true })
+    // ...mapMutations('algum_modulo', ['mutation1', 'mutation2'])
   }
 }
 </script>
