@@ -25,7 +25,7 @@
           Raridade: <span v-for="n in artifact.rarity" :key="n">&star;</span>
         </div>
       </div>
-      <img :src="imageUrls.full" class="card-img-top mx-auto" :alt="artifact.name" loading="lazy">
+      <img :src="imageUrls.full" class="card-img-top mx-auto" :alt="artifact.name" loading="lazy" itemprop="image">
     </div>
   </div>
 </template>
