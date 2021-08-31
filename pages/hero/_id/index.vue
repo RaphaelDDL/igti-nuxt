@@ -12,27 +12,31 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    <div v-else class="row">
+    <div v-else class="row" itemscope itemtype="https://schema.org/Person">
+      <meta
+        itemprop="image"
+        :content="`https://igti-nuxt.herokuapp.com/hero/${hero._id}`"
+      >
       <div class="col">
-        <h1 class="">
+        <h1 itemprop="name">
           {{ hero.name }}
         </h1>
-        <p class="lead">
+        <p class="lead" itemprop="description">
           {{ hero.description }}
         </p>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col" itemprop="honorificSuffix">
           Classe: {{ hero.role }}
         </div>
-        <div class="col">
+        <div class="col" itemprop="affiliation">
           Elemento: {{ hero.attribute }}
         </div>
-        <div class="col">
+        <div class="col" itemprop="honorificPrefix">
           Raridade: <span v-for="n in hero.rarity" :key="n">&star;</span>
         </div>
       </div>
-      <img :src="imageUrls.full" class="card-img-top mx-auto" :alt="hero.name" loading="lazy">
+      <img :src="imageUrls.full" class="card-img-top mx-auto" :alt="hero.name" loading="lazy" itemprop="image">
     </div>
   </div>
 </template>

@@ -1,19 +1,27 @@
 <template>
-  <div>
+  <div itemscope itemtype="https://schema.org/Product">
+    <meta
+      itemprop="image"
+      :content="`https://igti-nuxt.herokuapp.com/artifact/${artifact._id}`"
+    >
+    <meta
+      itemprop="productID"
+      :content="artifact._id"
+    >
     <div class="row">
       <div class="col">
-        <h1 class="">
+        <h1 itemprop="name">
           {{ artifact.name }}
         </h1>
-        <p class="lead">
+        <p class="lead" itemprop="description">
           {{ artifact.description }}
         </p>
       </div>
       <div class="row">
         <div class="col">
-          Classe: {{ artifact.role }}
+          Classe: <span itemprop="category">{{ artifact.role || 'ALL' }}</span>
         </div>
-        <div class="col">
+        <div class="col" itemprop="material">
           Raridade: <span v-for="n in artifact.rarity" :key="n">&star;</span>
         </div>
       </div>
